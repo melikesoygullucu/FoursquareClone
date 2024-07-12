@@ -110,6 +110,7 @@
                     <connections>
                         <outlet property="tableView" destination="6Xe-Sj-ulb" id="dxu-LV-RPO"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="toSignUpVC" modalPresentationStyle="fullScreen" id="0dk-9w-2dL"/>
+                        <segue destination="G8j-OL-LES" kind="show" id="0GM-3F-DrV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4iJ-SG-aLC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -135,8 +136,80 @@
             </objects>
             <point key="canvasLocation" x="904.58015267175574" y="3.5211267605633805"/>
         </scene>
+        <!--Add PlaceVC-->
+        <scene sceneID="MGU-r1-eq0">
+            <objects>
+                <viewController id="G8j-OL-LES" customClass="AddPlaceVC" customModule="FoursquareClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zf9-fC-A0w">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Place Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l33-Jx-N69">
+                                <rect key="frame" x="45" y="102" width="302" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="ckZ-nk-MBr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Place Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pGY-Go-fgR">
+                                <rect key="frame" x="45" y="159" width="302" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="u4s-1S-sZl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Any comment.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f3y-gH-gzZ">
+                                <rect key="frame" x="45" y="218" width="302" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="htJ-0z-r7k"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="select.png" translatesAutoresizingMaskIntoConstraints="NO" id="X0a-J4-Pwd">
+                                <rect key="frame" x="69" y="294" width="278" height="229"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgK-ve-13v">
+                                <rect key="frame" x="167" y="563" width="60" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="8ci-br-j4C"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Next"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6LW-S0-4Ms"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="X0a-J4-Pwd" firstAttribute="top" secondItem="f3y-gH-gzZ" secondAttribute="bottom" constant="42" id="09r-IG-zY9"/>
+                            <constraint firstItem="pGY-Go-fgR" firstAttribute="top" secondItem="l33-Jx-N69" secondAttribute="bottom" constant="23" id="6uV-lm-muq"/>
+                            <constraint firstItem="l33-Jx-N69" firstAttribute="leading" secondItem="pGY-Go-fgR" secondAttribute="leading" id="8HE-li-Cuv"/>
+                            <constraint firstItem="f3y-gH-gzZ" firstAttribute="trailing" secondItem="X0a-J4-Pwd" secondAttribute="trailing" id="R83-em-ezV"/>
+                            <constraint firstItem="f3y-gH-gzZ" firstAttribute="top" secondItem="pGY-Go-fgR" secondAttribute="bottom" constant="25" id="SoD-ld-z6G"/>
+                            <constraint firstItem="l33-Jx-N69" firstAttribute="centerX" secondItem="Zf9-fC-A0w" secondAttribute="centerX" id="UgQ-at-3gt"/>
+                            <constraint firstItem="OgK-ve-13v" firstAttribute="leading" secondItem="6LW-S0-4Ms" secondAttribute="leading" constant="167" id="b6K-Jr-Ko8"/>
+                            <constraint firstItem="l33-Jx-N69" firstAttribute="top" secondItem="6LW-S0-4Ms" secondAttribute="top" constant="58" id="bhq-Gq-xgo"/>
+                            <constraint firstItem="6LW-S0-4Ms" firstAttribute="bottom" secondItem="OgK-ve-13v" secondAttribute="bottom" constant="254" id="fS9-hc-l7r"/>
+                            <constraint firstItem="OgK-ve-13v" firstAttribute="centerX" secondItem="Zf9-fC-A0w" secondAttribute="centerX" id="fWC-RX-NTE"/>
+                            <constraint firstItem="l33-Jx-N69" firstAttribute="trailing" secondItem="pGY-Go-fgR" secondAttribute="trailing" id="ftm-Hx-kGO"/>
+                            <constraint firstItem="X0a-J4-Pwd" firstAttribute="leading" secondItem="6LW-S0-4Ms" secondAttribute="leading" constant="69" id="lLg-aL-GQP"/>
+                            <constraint firstItem="pGY-Go-fgR" firstAttribute="trailing" secondItem="f3y-gH-gzZ" secondAttribute="trailing" id="ont-2S-h5W"/>
+                            <constraint firstItem="l33-Jx-N69" firstAttribute="leading" secondItem="6LW-S0-4Ms" secondAttribute="leading" constant="45" id="r2m-gz-ikv"/>
+                            <constraint firstItem="OgK-ve-13v" firstAttribute="top" secondItem="X0a-J4-Pwd" secondAttribute="bottom" constant="40" id="wNL-Ez-c2Y"/>
+                            <constraint firstItem="pGY-Go-fgR" firstAttribute="leading" secondItem="f3y-gH-gzZ" secondAttribute="leading" id="wqX-PW-bef"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hUg-8A-bAD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rje-c7-e64" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2693.8931297709923" y="3.5211267605633805"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="select.png" width="264" height="300"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
