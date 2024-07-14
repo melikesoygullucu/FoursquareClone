@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import Parse
 
 class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -42,6 +43,9 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
             annotation.subtitle = PlaceModel.sharedInstance.placeType
             
             self.mapView.addAnnotation(annotation)
+            
+            PlaceModel.sharedInstance.placeLatitude = String(coordinates.latitude)
+            PlaceModel.sharedInstance.placeLongitude = String(coordinates.longitude)
         }
     }
     
@@ -53,6 +57,26 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     }
     
     @objc func saveButton() {
+        let placeModel = PlaceModel.sharedInstance
+        
+        let object = PFObject(className: "Places")
+        object["name"] = placeModel.placeName
+        object["type"] = placeModel.placeType
+        object["explanation"] = placeModel.placeExplanation
+        object["latitude"] = placeModel.placeLatitude
+        object["longitude"] = placeModel.placeLongitude
+        
+        if let imageData = placeModel.placeImage.jpegData(compressionQuality: 0.5) {
+            object["image"] = PFFileObject(name: "image.jpg", data: imageData)
+        }
+        
+        object.saveInBackground { succes, error in
+            if error != nil {
+                self.alertDialog(title: "Error", message: error?.localizedDescription ?? "Something went wrong, try again later!")
+            } else {
+                self.performSegue(withIdentifier: "fromMapVCtoPlacesVC", sender: nil)
+            }
+        }
         
     }
     
@@ -60,4 +84,11 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         self.dismiss(animated: true, completion: nil)
     }
 
+    func alertDialog(title:String, message:String){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
