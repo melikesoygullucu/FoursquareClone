@@ -8,15 +8,48 @@
 import UIKit
 import Parse
 
-class PlacesVC: UIViewController {
+class PlacesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var nameArray = [String]()
+    var idArray = [String]()
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addButton))
         
         navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "Log out", style: UIBarButtonItem.Style.plain, target: self, action: #selector(logout))
+        
+        getDataFromParse()
+    }
+    
+    func getDataFromParse() {
+        let query = PFQuery(className: "Places")
+        query.findObjectsInBackground { objects, error in
+            if error != nil {
+                self.alertDialog(title: "Error", message: error?.localizedDescription ?? "Something went wrong, try again!")
+            } else {
+                if objects != nil {
+                    
+                    self.nameArray.removeAll(keepingCapacity: false)
+                    self.idArray.removeAll(keepingCapacity: false)
+                    
+                    for object in objects! {
+                        if let placeName = object.object(forKey: "name") as? String {
+                            if let placeID = object.objectId as? String {
+                                self.nameArray.append(placeName)
+                                self.idArray.append(placeID)
+                            }
+                        }
+                    }
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
     
     @objc func addButton () {
@@ -39,6 +72,18 @@ class PlacesVC: UIViewController {
         let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
         alert.addAction(okButton)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        var content = cell.defaultContentConfiguration()
+        content.text = nameArray[indexPath.row]
+        cell.contentConfiguration = content
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return nameArray.count
     }
     
 }
