@@ -13,6 +13,7 @@ class PlacesVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var nameArray = [String]()
     var idArray = [String]()
     var selectedPlaceID = ""
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {

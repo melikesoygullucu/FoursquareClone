@@ -14,6 +14,7 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     
     @IBOutlet weak var mapView: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
